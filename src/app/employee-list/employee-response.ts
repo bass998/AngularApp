@@ -1,4 +1,5 @@
 export class EmployeeResponse {
+    
     EmployeeName: string = '';
     Time: number = 0;
 

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { ApexChart, ApexDataLabels, ApexLegend, ApexNonAxisChartSeries } from 'ng-apexcharts';
+import { ApexChart, ApexLegend, ApexNonAxisChartSeries } from 'ng-apexcharts';
 import { EmployeeResponse } from '../employee-list/employee-response';
 
 @Component({
@@ -10,14 +10,12 @@ import { EmployeeResponse } from '../employee-list/employee-response';
 export class PieChartComponent implements OnChanges {
   
   @Input() emp: EmployeeResponse[] = [];
-
   chartSeries: ApexNonAxisChartSeries = [];
   chartDetails: ApexChart = {
     type: 'pie',
     toolbar: {
       show: true
-    },
-    
+    }
   };
   chartLabels: string[] = [];
   chartLegend: ApexLegend = {

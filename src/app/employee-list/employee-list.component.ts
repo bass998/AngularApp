@@ -10,8 +10,7 @@ import { EmployeeResponse } from './employee-response';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
-
-  employeesByMonth: IEmployee[] = [];
+  
   employeeResponse: EmployeeResponse[] = [];
   errorMessage = '';
   time: number = 0;
@@ -23,8 +22,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.employeeService.getEmployees().subscribe({
       next: employees => {
-        this.employeesByMonth = employees.filter((emp: IEmployee) => emp.DeletedOn == null && emp.EmployeeName != null && (emp.StarTimeUtc < emp.EndTimeUtc))
-        this.calculateTime(this.employeesByMonth);
+        employees = employees.filter((emp: IEmployee) => emp.DeletedOn == null && emp.EmployeeName != null && (emp.StarTimeUtc < emp.EndTimeUtc))
+        this.calculateTime(employees);
         this.isLoaded = true;
       },
       error: err => this.errorMessage = err
@@ -35,7 +34,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  calculateTime(employees: IEmployee[]) {
+  calculateTime(employees: IEmployee[]): void {
     employees.forEach(item => {
       let employee = this.employeeResponse.find(obj => obj.EmployeeName == item.EmployeeName);
       let date1 = new Date(item.StarTimeUtc);
@@ -53,5 +52,4 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     });
     this.employeeResponse.sort((a, b) => b.Time - a.Time).forEach(item => item.Time = Math.round(item.Time));
   }
-  
 }
