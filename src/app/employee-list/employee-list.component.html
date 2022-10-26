@@ -1,0 +1,19 @@
+<div *ngIf='isLoaded'>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Total Time in Month</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employeeResponse"  [ngClass]="employee.Time < 100 ? 'table-danger' : ''" >
+                <td>{{employee.EmployeeName}}</td>
+                <td>{{employee.Time}} hrs</td>
+                <td><a href="#">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <app-pie-chart [emp]='employeeResponse'></app-pie-chart>
+</div>

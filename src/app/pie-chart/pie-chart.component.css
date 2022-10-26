@@ -1,0 +1,8 @@
+.chart {
+    width: 500px;
+    margin-top: 80px;
+}
+
+.apexcharts-legend-series {
+    text-align: left  !important;
+}
